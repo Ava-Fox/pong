@@ -1,4 +1,5 @@
 import pygame
+# import pytweening (maybe use later for a more "natural" ball movement)
 
 
 class Paddle:
@@ -19,10 +20,9 @@ class Paddle:
     def update(self):
         if self.moving_up and self.rect.top > self.game.wall_top.bottom:
             self.y -= self.speed
-            print("moving up")
         if self.moving_down and self.rect.bottom < self.game.wall_bottom.top:
             self.y += self.speed
-            print("moving down")
+            
         # Update rect object from self.x
         self.rect.y = self.y
 
@@ -34,6 +34,10 @@ class Pong:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("Ivy and Ava's Best Pong Ever")
+
+        #Load music
+        pygame.mixer.music.load("Fields of Ice.wav")
+        pygame.mixer.music.play(-1)
         
         self.screen = pygame.display.set_mode((1280, 720))
         self.screen_rect = self.screen.get_rect()
